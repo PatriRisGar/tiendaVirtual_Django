@@ -1,0 +1,13 @@
+{% extends "tienda/base.html" %} {% block content %}
+<h1>Informes</h1>
+<ul>
+	<li><a href="{% url 'informeMarca' %}">Productos por marca</a></li>
+	<li>
+		<a href="{% url 'informeTopTenProductos' %}">Top ten productos vendidos</a>
+	</li>
+	<li><a href="{% url 'informeCompraUsuario' %}">Compras de un usuario</a></li>
+	<li>
+		<a href="{% url 'informeTopTenClientes' %}">Top ten mejores clientes</a>
+	</li>
+</ul>
+{% endblock %}

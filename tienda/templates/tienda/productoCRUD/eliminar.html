@@ -1,0 +1,12 @@
+{% extends "tienda/base.html" %} {% block content %}
+
+<form action="" method="post">
+	{% csrf_token %}
+	<h3>Eliminar {{producto.nombre}}</h3>
+	<p>Los datos de este producto seran eliminados.</p>
+	<button type="submit" value="Confirmar">Aceptar</button>
+	<a href="{% url 'editar' pk=producto.pk %}">
+		<button type="button">Volver</button></a
+	>
+</form>
+{% endblock %}

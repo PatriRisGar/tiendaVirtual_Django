@@ -1,0 +1,31 @@
+{% extends "tienda/base.html" %} {% block content %}
+<h1>Informe Top Ten Productos Vendidos</h1>
+
+<div class="row">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Producto</th>
+				<th scope="col">Modelo</th>
+				<th scope="col">Precio</th>
+				<th scope="col">Vip</th>
+				<th scope="col">Total ganado</th>
+				<th scope="col">Total unidades vendidas</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for compra in listado %}
+			<tr>
+				<th scope="row">{{compra.producto.nombre}}</th>
+				<td>{{compra.producto.modelo}}</td>
+				<td>{{compra.producto.precio}}</td>
+				<td>{{compra.producto.vip|yesno:'Si,No'}}</td>
+				<td>{{compra.sumVentas | floatformat:'2'}}</td>
+				<td>{{compra.sumUnidades }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+{% endblock %}

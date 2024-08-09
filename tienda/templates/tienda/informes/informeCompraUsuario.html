@@ -1,0 +1,42 @@
+{% extends "tienda/base.html" %} {% block content %}
+<h1>Compras de un usuario</h1>
+
+<form method="GET">
+	{% csrf_token %}
+
+	<div class="input-group p-5">
+		<select class="form-select" id="inputGroupSelect02" name="user" >
+			{% if not listadoUsers %}
+			<option selected disabled> Seleccionar usuario </option>
+			{% else %}
+					<option value="">Mostrar todos</option>
+			{% endif %}
+			{% for user in crearFiltro %}
+			<option value="{{user}}" >{{user}}</option>
+			{% endfor %}
+		</select>
+		<label class="input-group-text" for="inputGroupSelect02"
+			><i class="bi bi-search"> <input type="submit" value="Buscar"></input></i></label
+		>
+	</div>
+</form>
+
+{% if usuarioSeleccionado %}
+    <h5>Filtrando por usuario: {{ usuarioSeleccionado }}</h5>
+{% endif %}
+
+<div class="row">
+	{% for compra in listadoCompras %}
+	<div class="col-4">
+		<div class="card m-2" >
+			<div class="card-body ">
+				<h5 class="card-title">{{compra.user.username}}</h5>
+				<h6 class="card-subtitle mb-2 text-body-secondary">{{compra.fecha}}</h6>
+				<p class="card-text">
+					<span>{{compra.unidades}} unidades de {{compra.producto.nombre}}, con un importe total de {{compra.importe}}€</span>
+				</p>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div> {% endblock %}

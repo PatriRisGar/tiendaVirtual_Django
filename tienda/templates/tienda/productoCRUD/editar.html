@@ -1,0 +1,13 @@
+{% extends "tienda/base.html" %} {% block content %}
+
+<h1>Modificar producto</h1>
+<article>
+	<form action="" method="post">
+		{% csrf_token %} {{ form.as_p }}
+		<button type="submit" class="btn btn-primary">Confirmar cambios</button>
+		<a href="{% url 'eliminar' pk=producto.pk %}" class="btn">Eliminar</a>
+		<a href="{% url 'listado' %}" class="btn">Volver</a>
+	</form>
+</article>
+
+{% endblock %}

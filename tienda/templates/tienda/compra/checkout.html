@@ -1,0 +1,22 @@
+{% extends "tienda/base.html" %} {% block content %}
+<form action="" method="post">
+	{% csrf_token %}
+	<div class="card text-center">
+		<div class="card-header p-3">Confirmar compra</div>
+		<div class="card-body">
+			<h5 class="card-title p-3">
+				{{producto.nombre}} {{ producto.modelo }} de {{producto.marca}}
+			</h5>
+			<label for="unidades">Unidades: </label>
+			<input type="number" name="unidades" id="unidades" min="1" required />
+			<p class="p-2">
+				<span>Precio por unidad: {{producto.precio}}€ </span>
+				<span> {{producto.vip|yesno:'Si,No'}} es vip</span>
+			</p>
+			<input type="submit" value="Comprar" />
+			<a href="{% url 'comprar' %}" class="btn">Cancelar</a>
+		</div>
+	</div>
+</form>
+
+{% endblock %}

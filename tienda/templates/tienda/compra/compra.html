@@ -1,0 +1,41 @@
+{% extends "tienda/base.html" %} {% block content %}
+<h1>Listado de productos</h1>
+
+<form method="GET">
+	{% csrf_token %}
+	<div class="input-group p-5">
+		<select class="form-select" id="inputGroupSelect02" name="marca" >
+			{% if not listadoFiltrosMarca %}
+			<option selected disabled> Seleccionar marca </option>
+			{% else %}
+					<option value="">Mostrar todos</option>
+			{% endif %}
+			{% for marca in crearFiltro %}
+			<option value="{{marca}}" >{{marca}}</option>
+			{% endfor %}
+		</select>
+		<label class="input-group-text" for="inputGroupSelect02"
+			><i class="bi bi-search"> <input type="submit" value="Buscar"></input></i></label
+		>
+	</div>
+</form>
+{% if listadoFiltrosMarca %}
+    <h5>Filtrando por marca: {{ listadoFiltrosMarca }}</h5>
+{% endif %}
+
+<div class="row">
+	{% for producto in listado %}
+	<div class="col-3 pb-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">{{producto.nombre}}</h5>
+				<p class="card-text">{{ producto.modelo }} de {{producto.marca}}</p>
+				<a href="{% url 'checkout' pk=producto.pk %}" class="btn btn-primary"
+					>Comprar</a
+				>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}

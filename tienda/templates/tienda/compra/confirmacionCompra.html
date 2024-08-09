@@ -1,0 +1,5 @@
+{% extends "tienda/base.html" %} {% block content %}
+<h1>La compra no ha sido realizada</h1>
+<h5>No hay unidades suficientes</h5>
+<a href="{% url 'comprar' %}" class="btn btn-primary">Volver</a>
+{% endblock%}
